@@ -70,7 +70,7 @@ class attention_net(nn.Module):
                                                       align_corners=True)
         part_imgs = part_imgs.view(batch * self.topN, 3, 224, 224)
         _, _, part_features = self.pretrained_model(part_imgs.detach())
-        part_feature = self.ca(part_feature)
+        part_features = self.ca(part_features)
         part_feature = part_features.view(batch, self.topN, -1)
         part_feature = part_feature[:, :CAT_NUM, ...].contiguous()
         part_feature = part_feature.view(batch, -1)
